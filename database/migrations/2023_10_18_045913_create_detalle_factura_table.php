@@ -13,14 +13,12 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('vendedores', function (Blueprint $table) {
-            $table->id('codigo_vendedor')->unsigned();
-            $table->string('id_vendedores')->unique();
-            $table->string('nombre',50);
-            $table->string('apellidos',50);
-            $table->decimal('salario_basico',20,2);
+        Schema::create('detalle_factura', function (Blueprint $table) {
+            $table->string('numero_factura');
+            $table->string('codigo_producto');
+            $table->integer('cantidad');
             $table->timestamps();
-            
+            $table->foreign('numero_factura')->references('numero_factura')->on('facturas')->onDelete('cascade')->onUpdate('cascade');
             
         });
     }
@@ -32,6 +30,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('vendedores');
+        Schema::dropIfExists('detalle_factura');
     }
 };

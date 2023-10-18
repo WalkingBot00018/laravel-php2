@@ -13,15 +13,10 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('vendedores', function (Blueprint $table) {
-            $table->id('codigo_vendedor')->unsigned();
-            $table->string('id_vendedores')->unique();
+        Schema::create('usuarios', function (Blueprint $table) {
             $table->string('nombre',50);
-            $table->string('apellidos',50);
-            $table->decimal('salario_basico',20,2);
+            $table->dateTime('fecha');
             $table->timestamps();
-            
-            
         });
     }
 
@@ -32,6 +27,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('vendedores');
+        Schema::dropIfExists('usuarios');
     }
 };
